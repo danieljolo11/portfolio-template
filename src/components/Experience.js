@@ -52,7 +52,7 @@ function Experience() {
           isInView ? "translate-x-0" : "-translate-x-[100%]"
         } transition-transform duration-1000 max-w-7xl w-full flex flex-col gap-8`}
       >
-        <div className="flex flex-row items-center gap-10">
+        <div className="flex flex-row items-center gap-4 md:gap-10 lg:gap-10 px-2 md:px-4 xl:px-0">
           <span className="text-6xl font-bold text-main-white">Experience</span>
           <div className="w-full h-0.5 bg-main-blue"></div>
         </div>
@@ -61,7 +61,7 @@ function Experience() {
             ({ companyname, date, location, position, techs, desc }) => (
               <div
                 key={companyname}
-                className="flex flex-col gap-3 px-6 border-b border-main-blue pb-4 pt-2"
+                className="flex flex-col gap-3 px-8 xl:px-6 border-b border-main-blue pb-4 pt-2"
               >
                 <div className="flex flex-row items-center justify-between">
                   <span className="text-main-white text-xl font-bold">
@@ -71,14 +71,19 @@ function Experience() {
                     {date ?? "-"}
                   </span>
                 </div>
-                <span className="text-main-white text-lg font-medium">
-                  {location ?? "-"}
-                </span>
                 <div className="flex flex-row items-center justify-between">
-                  <span className="text-main-blue text-lg font-bold">
+                  <span className="text-main-white text-lg font-medium">
+                    {location ?? "-"}
+                  </span>
+                  <span className="block md:hidden lg:hidden text-main-blue text-lg font-bold">
                     {position ?? "-"}
                   </span>
-                  <div className="flex flex-row gap-2">
+                </div>
+                <div className="flex flex-row items-center justify-between">
+                  <span className="hidden md:block lg:block text-main-blue text-lg font-bold">
+                    {position ?? "-"}
+                  </span>
+                  <div className="flex flex-row flex-wrap gap-2">
                     {techs.map((items) => (
                       <div
                         key={items}

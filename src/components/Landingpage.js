@@ -37,8 +37,8 @@ const LandingPage = () => {
         </button>
       </Link>
       <Navigation />
-      <div id="landingpage" className="min-h-screen bg-main-black">
-        <section className="h-screen flex flex-row items-center">
+      <div id="landingpage" className="min-h-screen bg-main-black py-8">
+        <section className="h-screen flex flex-col md:flex-row lg:flex-row items-center gap-10 md:gap-0 lg:gap-0">
           <div className="basis-1/2 text-white px-4 flex flex-col gap-2">
             <BubbleText />
           </div>

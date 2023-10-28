@@ -22,7 +22,7 @@ function About() {
   return (
     <div
       id="About"
-      className="min-h-screen bg-main-black flex flex-row justify-center pt-20"
+      className="min-h-screen bg-main-black flex flex-row justify-center pt-40 pb-20 md:py-20 xl:pt-20 xl:pb-0"
     >
       <div
         ref={ref}
@@ -30,11 +30,11 @@ function About() {
           isInView ? "translate-x-0" : "-translate-x-[100%]"
         } transition-transform duration-1000 max-w-7xl w-full flex flex-col gap-8`}
       >
-        <div className="flex flex-row items-center gap-10">
+        <div className="flex flex-row items-center gap-4 md:gap-10 xl:gap-10 px-2 md:px-4 xl:px-0">
           <span className="text-6xl font-bold text-main-white">About</span>
           <div className="w-full h-0.5 bg-main-blue"></div>
         </div>
-        <div className="flex flex-row gap-4">
+        <div className="flex flex-col md:flex-row lg:flex-row gap-8 md:gap-4 lg:gap-4 px-4 md:px-4 xl:px-0">
           <div className="basis-[65%] flex flex-col gap-4">
             <span className="text-lg font-light text-main-white/80 first-letter:bg-main-blue first-letter:p-3.5 first-letter:rounded-md first-letter:float-left first-letter:mr-2 first-letter:font-bold">
               Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do

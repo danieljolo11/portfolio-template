@@ -92,7 +92,7 @@ const Navigation = () => {
     <div
       className={`${
         showNavbar ? "h-80 " : "h-0"
-      } transition-all duration-500 origin-top bg-main-blue z-50 overflow-hidden`}
+      } fixed top-0 w-full transition-all duration-500 origin-top bg-main-blue z-50 overflow-hidden`}
     >
       <div
         className={`${
@@ -105,15 +105,22 @@ const Navigation = () => {
         />
       </div>
       <div className="flex flex-col justify-end h-[65%]">
-        <div className=" flex flex-col gap-3 px-6">
+        <div className=" flex flex-col gap-3 px-6 w-full">
           {tabs.map((tab) => (
             <Link to={`/#${tab}`}>
-              <span className={`text-xl text-main-black`}>{tab}</span>
+              <button
+                onClick={() => setSelected(tab)}
+                className={`${
+                  selected === tab ? "bg-main-white" : "bg-transparent"
+                } w-full rounded-full text-xl text-main-black`}
+              >
+                {tab}
+              </button>
             </Link>
           ))}
         </div>
       </div>
-      <div className="flex flex-row justify-start mt-8 px-6">
+      <div className="flex flex-row justify-center mt-8 px-6">
         <button className="bg-transparent hover:bg-secondary-blue hover:text-main-black transition-colors duration-300 w-fit border-secondary-blue border py-2 px-6 rounded-lg text-main-white">
           My resume
         </button>

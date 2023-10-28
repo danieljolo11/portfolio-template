@@ -65,11 +65,11 @@ function Projects() {
           isInView ? "translate-x-0" : "-translate-x-[100%]"
         } transition-transform duration-1000 max-w-7xl w-full flex flex-col gap-8`}
       >
-        <div className="flex flex-row items-center gap-10">
+        <div className="flex flex-row items-center gap-4 md:gap-10 xl:gap-10 px-2 md:px-4 xl:px-0">
           <span className="text-6xl font-bold text-main-white">Projects</span>
           <div className="w-full h-0.5 bg-main-blue"></div>
         </div>
-        <div className="grid grid-cols-3 gap-6">
+        <div className="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 place-items-center md:place-items-center xl:place-items-start gap-3 md:gap-2 xl:gap-6">
           {projectsData.map(({ title, techs, desc, img, link }) => {
             const seperatetechs = techs?.join(", ");
             return (

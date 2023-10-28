@@ -84,10 +84,10 @@ const BubbleText = () => {
   return (
     <div className="flex flex-row justify-center">
       <div className="flex flex-col gap-5">
-        <h2 className="hover-text text-start text-7xl font-thin text-secondary-blue">
+        <h2 className="hover-text text-center md:text-start lg:text-start text-7xl font-thin text-secondary-blue">
           <Text>Hey, I'm Daniel</Text>
         </h2>
-        <div className="flex flex-row items-center gap-2">
+        <div className="flex flex-row justify-center md:justify-start lg:justify-start items-center gap-2">
           <h2 className="hover-text text-start text-2xl font-thin text-secondary-blue">
             <Text>I'm a</Text>
           </h2>
@@ -95,7 +95,7 @@ const BubbleText = () => {
             <Text>Full stack Developer</Text>
           </span>
         </div>
-        <span className="max-w-lg text-secondary-blue">
+        <span className="max-w-lg text-center md:text-start lg:text-start text-secondary-blue">
           Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do
           eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad
           minim veniam, quis nostrud exercitation ullamco laboris nisi ut
@@ -104,7 +104,7 @@ const BubbleText = () => {
         {/* <button className="bg-main-blue w-fit text-main-white py-3 px-5 rounded-lg hover:bg-main-blue/90">
           Contact me
         </button> */}
-        <div className={`flex flex-row items-center gap-4`}>
+        <div className={`flex flex-row justify-center md:justify-start lg:justify-start items-center gap-4`}>
           <a
             className="text-white hover:text-blue-600"
             href="https://www.linkedin.com/in/daniel-jolo-ab88aa191/"
