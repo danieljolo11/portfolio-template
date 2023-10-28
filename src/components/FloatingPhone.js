@@ -1,5 +1,6 @@
 import { motion } from "framer-motion";
 import { FiBatteryCharging, FiWifi } from "react-icons/fi";
+import { Link } from "react-router-dom";
 
 const FloatingPhone = () => {
   return (
@@ -65,13 +66,15 @@ const Screen = () => {
         ></path>
       </svg>
 
-      <button className="absolute bottom-4 left-4 right-4 z-10 rounded-lg border-[1px] bg-white py-2 text-sm font-medium text-main-blue backdrop-blur">
-        Go to projects
-      </button>
+      <Link to="/#Contact">
+        <button className="absolute bottom-4 left-4 right-4 z-10 rounded-lg border-[1px] bg-white py-2 text-sm font-medium text-main-blue backdrop-blur">
+          Contact me
+        </button>
+      </Link>
 
       <div className="absolute -bottom-72 left-[50%] h-96 w-96 -translate-x-[50%] rounded-full bg-main-blue" />
     </div>
   );
 };
 
-export default FloatingPhone
+export default FloatingPhone;

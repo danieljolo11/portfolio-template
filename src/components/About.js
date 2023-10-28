@@ -1,5 +1,6 @@
-import React from "react";
+import React, { useRef } from "react";
 import { FaNetworkWired } from "react-icons/fa6";
+import { useInView } from "framer-motion";
 
 function About() {
   const techs = [
@@ -15,9 +16,20 @@ function About() {
     "Zustand",
   ];
 
+  const ref = useRef(null);
+  const isInView = useInView(ref, { once: true });
+
   return (
-    <div className="min-h-screen bg-main-black flex flex-row justify-center">
-      <div className="max-w-7xl w-full flex flex-col gap-8">
+    <div
+      id="About"
+      className="min-h-screen bg-main-black flex flex-row justify-center pt-20"
+    >
+      <div
+        ref={ref}
+        className={`${
+          isInView ? "translate-x-0" : "-translate-x-[100%]"
+        } transition-transform duration-1000 max-w-7xl w-full flex flex-col gap-8`}
+      >
         <div className="flex flex-row items-center gap-10">
           <span className="text-6xl font-bold text-main-white">About</span>
           <div className="w-full h-0.5 bg-main-blue"></div>
@@ -50,14 +62,12 @@ function About() {
                 <FaNetworkWired className=" text-main-black" />
               </div>
               <div>
-                <span className="text-xl font-bold text-main-white">
-                  Tech
-                </span>
+                <span className="text-xl font-bold text-main-white">Tech</span>
               </div>
             </div>
             <div className="flex flex-wrap gap-4">
               {techs.map((items) => (
-                <div className="bg-secondary-blue py-1 px-2 rounded-lg w-fit">
+                <div key={items} className="bg-secondary-blue py-1 px-2 rounded-lg w-fit">
                   <span
                     key={items}
                     className="text-main-black font-medium text-base"

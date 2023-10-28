@@ -1,12 +1,17 @@
 import React, { useState } from "react";
 import { motion, useMotionValueEvent, useScroll } from "framer-motion";
+import { Link } from "react-router-dom";
+import { HiOutlineBars3 } from "react-icons/hi2";
+import { AiOutlineClose } from "react-icons/ai";
 
 const Navigation = () => {
+  const tabs = ["About", "Projects", "Experience"];
+
   const { scrollY } = useScroll();
-  const tabs = ["About", "Projects", "Experience", "Contact"];
 
   const [hidden, setHidden] = useState(false);
-  const [selected, setSelected] = useState(tabs[0]);
+  const [showNavbar, setShowNavbar] = useState(false);
+  const [selected, setSelected] = useState([]);
 
   useMotionValueEvent(scrollY, "change", (latest) => {
     const previous = scrollY.getPrevious();
@@ -15,9 +20,23 @@ const Navigation = () => {
     } else {
       setHidden(false);
     }
+
+    switch (true) {
+      case latest >= 150 && latest < 1000:
+        setSelected("About");
+        break;
+      case latest >= 1001 && latest < 2000:
+        setSelected("Projects");
+        break;
+      case latest >= 2001 && latest < 2800:
+        setSelected("Experience");
+        break;
+      default:
+        setSelected([]);
+    }
   });
 
-  return (
+  const ScreenBigDisplay = (
     <motion.nav
       variants={{
         visible: { y: 0 },
@@ -25,7 +44,7 @@ const Navigation = () => {
       }}
       transition={{ duration: 0.35, ease: "easeInOut" }}
       animate={hidden ? "hidden" : "visible"}
-      className="fixed top-0 flex w-full items-center justify-between bg-main-black/70 backdrop-blur-sm z-50 py-4 px-8"
+      className="hidden md:flex lg:flex fixed top-0 w-full items-center justify-between bg-main-black/70 backdrop-blur-sm z-50 py-4 px-8"
     >
       <div className="flex flex-row items-center gap-16">
         <span className="text-4xl font-bold text-main-white">
@@ -49,27 +68,89 @@ const Navigation = () => {
       </div>
     </motion.nav>
   );
+
+  const ScreenPhoneDisplay = (
+    <motion.nav
+      variants={{
+        visible: { y: 24 },
+        hidden: { y: "-100%" },
+      }}
+      transition={{ duration: 0.35, ease: "easeInOut" }}
+      animate={hidden ? "hidden" : "visible"}
+      className={`${
+        !showNavbar ? "flex" : "hidden"
+      } flex md:hidden lg:hidden fixed top-auto right-10 z-40`}
+    >
+      <HiOutlineBars3
+        onClick={() => setShowNavbar(!showNavbar)}
+        className="text-main-white text-2xl cursor-pointer"
+      />
+    </motion.nav>
+  );
+
+  const PhoneNavbar = (
+    <div
+      className={`${
+        showNavbar ? "h-80 " : "h-0"
+      } transition-all duration-500 origin-top bg-main-blue z-50 overflow-hidden`}
+    >
+      <div
+        className={`${
+          showNavbar ? "flex" : "hidden"
+        } fixed top-6 right-10 z-50`}
+      >
+        <AiOutlineClose
+          onClick={() => setShowNavbar(!showNavbar)}
+          className="text-main-white text-2xl cursor-pointer"
+        />
+      </div>
+      <div className="flex flex-col justify-end h-[65%]">
+        <div className=" flex flex-col gap-3 px-6">
+          {tabs.map((tab) => (
+            <Link to={`/#${tab}`}>
+              <span className={`text-xl text-main-black`}>{tab}</span>
+            </Link>
+          ))}
+        </div>
+      </div>
+      <div className="flex flex-row justify-start mt-8 px-6">
+        <button className="bg-transparent hover:bg-secondary-blue hover:text-main-black transition-colors duration-300 w-fit border-secondary-blue border py-2 px-6 rounded-lg text-main-white">
+          My resume
+        </button>
+      </div>
+    </div>
+  );
+
+  return (
+    <div>
+      {ScreenBigDisplay}
+      {ScreenPhoneDisplay}
+      {PhoneNavbar}
+    </div>
+  );
 };
 
 const Chip = ({ text, selected, setSelected }) => {
   return (
-    <button
-      onClick={() => setSelected(text)}
-      className={`${
-        selected
-          ? "text-secondary-blue"
-          : "text-main-white hover:text-secondary-blue/80 hover:bg-slate-700"
-      } text-sm transition-colors px-2.5 py-0.5 rounded-md relative`}
-    >
-      <span className="navbartext border-b-2 border-transparent">{text}</span>
-      {selected && (
-        <motion.span
-          layoutId="pill-tab"
-          transition={{ type: "spring", duration: 0.5 }}
-          className="absolute inset-0 z-0 navbartext border-b-2 border-main-blue"
-        ></motion.span>
-      )}
-    </button>
+    <Link to={`/#${text}`}>
+      <button
+        onClick={() => setSelected(text)}
+        className={`${
+          selected
+            ? "text-secondary-blue"
+            : "text-main-white hover:text-secondary-blue/80 hover:bg-slate-700"
+        } text-sm transition-colors px-2.5 py-0.5 rounded-md relative`}
+      >
+        <span className="navbartext border-b-2 border-transparent">{text}</span>
+        {selected && (
+          <motion.span
+            layoutId="pill-tab"
+            transition={{ type: "spring", duration: 0.5 }}
+            className="absolute inset-0 z-0 navbartext border-b-2 border-main-blue"
+          ></motion.span>
+        )}
+      </button>
+    </Link>
   );
 };
 
