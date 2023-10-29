@@ -31,7 +31,7 @@ function About() {
         } transition-transform duration-1000 max-w-7xl w-full flex flex-col gap-8`}
       >
         <div className="flex flex-row items-center gap-4 md:gap-10 xl:gap-10 px-2 md:px-4 xl:px-0">
-          <span className="text-6xl font-bold text-main-white">About</span>
+          <span className="text-4xl md:text-6xl xl:text-6xl font-bold text-main-white">About</span>
           <div className="w-full h-0.5 bg-main-blue"></div>
         </div>
         <div className="flex flex-col md:flex-row lg:flex-row gap-8 md:gap-4 lg:gap-4 px-4 md:px-4 xl:px-0">

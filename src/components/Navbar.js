@@ -107,7 +107,7 @@ const Navigation = () => {
       <div className="flex flex-col justify-end h-[65%]">
         <div className=" flex flex-col gap-3 px-6 w-full">
           {tabs.map((tab) => (
-            <Link to={`/#${tab}`}>
+            <Link to={`/#${tab}`} key={tab}>
               <button
                 onClick={() => setSelected(tab)}
                 className={`${
@@ -139,7 +139,7 @@ const Navigation = () => {
 
 const Chip = ({ text, selected, setSelected }) => {
   return (
-    <Link to={`/#${text}`}>
+    <Link to={`/#${text}`} key={text}>
       <button
         onClick={() => setSelected(text)}
         className={`${

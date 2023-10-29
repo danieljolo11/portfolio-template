@@ -1,18 +1,21 @@
 import About from "./About";
 import BubbleText from "./BubbleText";
-import Contact from "./Contact";
+// import Contact from "./Contact";
 import Experience from "./Experience";
 import FloatingPhone from "./FloatingPhone";
 import Navigation from "./Navbar";
 import Projects from "./Projects";
-import React, { useEffect, useRef } from "react";
+import React, { useEffect, useRef, useState } from "react";
 import { useLocation } from "react-router";
 import { FaChevronUp } from "react-icons/fa";
 import { Link } from "react-router-dom";
+import { ModalContact } from "./ModalContact";
 
 const LandingPage = () => {
   const location = useLocation();
   const lastHash = useRef("");
+
+  const [isOpen, setIsOpen] = useState(false);
 
   useEffect(() => {
     if (location.hash) {
@@ -37,20 +40,24 @@ const LandingPage = () => {
         </button>
       </Link>
       <Navigation />
-      <div id="landingpage" className="min-h-screen bg-main-black py-8">
+      <div
+        id="landingpage"
+        className="min-h-screen bg-main-black pt-8 pb-16 md:py-8 lg:py-8"
+      >
         <section className="h-screen flex flex-col md:flex-row lg:flex-row items-center gap-10 md:gap-0 lg:gap-0">
           <div className="basis-1/2 text-white px-4 flex flex-col gap-2">
             <BubbleText />
           </div>
           <div className="basis-1/2 flex justify-center items-center">
-            <FloatingPhone />
+            <FloatingPhone isOpen={isOpen} setIsOpen={setIsOpen} />
           </div>
         </section>
       </div>
       <About />
       <Projects />
       <Experience />
-      <Contact />
+      {/* <Contact /> */}
+      <ModalContact isOpen={isOpen} setIsOpen={setIsOpen} />
     </div>
   );
 };

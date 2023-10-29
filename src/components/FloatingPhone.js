@@ -1,8 +1,8 @@
 import { motion } from "framer-motion";
 import { FiBatteryCharging, FiWifi } from "react-icons/fi";
-import { Link } from "react-router-dom";
+// import { Link } from "react-router-dom";
 
-const FloatingPhone = () => {
+const FloatingPhone = ({ isOpen, setIsOpen }) => {
   return (
     <div
       style={{
@@ -27,7 +27,7 @@ const FloatingPhone = () => {
         className="relative h-96 w-56 rounded-[24px] border-2 border-b-4 border-r-4 border-white border-l-neutral-200 border-t-neutral-200 bg-neutral-900 p-1 pl-[3px] pt-[3px]"
       >
         <HeaderBar />
-        <Screen />
+        <Screen isOpen={isOpen} setIsOpen={setIsOpen} />
       </motion.div>
     </div>
   );
@@ -45,7 +45,7 @@ const HeaderBar = () => {
   );
 };
 
-const Screen = () => {
+const Screen = ({ isOpen, setIsOpen }) => {
   return (
     <div className="relative z-0 grid h-full w-full place-content-center overflow-hidden rounded-[20px] bg-white">
       <svg
@@ -66,11 +66,14 @@ const Screen = () => {
         ></path>
       </svg>
 
-      <Link to="/#Contact">
-        <button className="absolute bottom-4 left-4 right-4 z-10 rounded-lg border-[1px] bg-white py-2 text-sm font-medium text-main-blue backdrop-blur">
+      {/* <Link to="/#Contact"> */}
+        <button
+          onClick={() => setIsOpen(!isOpen)}
+          className="absolute bottom-4 left-4 right-4 z-10 rounded-lg border-[1px] bg-white py-2 text-sm font-medium text-main-blue backdrop-blur"
+        >
           Contact me
         </button>
-      </Link>
+      {/* </Link> */}
 
       <div className="absolute -bottom-72 left-[50%] h-96 w-96 -translate-x-[50%] rounded-full bg-main-blue" />
     </div>
