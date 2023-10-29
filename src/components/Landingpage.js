@@ -16,6 +16,7 @@ const LandingPage = () => {
   const lastHash = useRef("");
 
   const [isOpen, setIsOpen] = useState(false);
+  const [showChevUp, setShowChevUp] = useState(false);
 
   useEffect(() => {
     if (location.hash) {
@@ -35,11 +36,15 @@ const LandingPage = () => {
   return (
     <div className="min-h-screen bg-main-black">
       <Link to="/#landingpage">
-        <button className="fixed bottom-10 right-10 bg-main-blue rounded-lg p-2 z-40">
+        <button
+          className={`${
+            showChevUp ? "opacity-100" : "opacity-0"
+          } transition-opacity duration-300 fixed bottom-10 right-10 bg-main-blue rounded-lg p-2 z-40`}
+        >
           <FaChevronUp className="text-main-white" />
         </button>
       </Link>
-      <Navigation />
+      <Navigation setShowChevUp={setShowChevUp} />
       <div
         id="landingpage"
         className="min-h-screen bg-main-black pt-8 pb-16 md:py-8 lg:py-8"

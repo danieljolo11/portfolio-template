@@ -4,7 +4,7 @@ import { Link } from "react-router-dom";
 import { HiOutlineBars3 } from "react-icons/hi2";
 import { AiOutlineClose } from "react-icons/ai";
 
-const Navigation = () => {
+const Navigation = ({setShowChevUp}) => {
   const tabs = ["About", "Projects", "Experience"];
 
   const { scrollY } = useScroll();
@@ -24,15 +24,19 @@ const Navigation = () => {
     switch (true) {
       case latest >= 150 && latest < 1000:
         setSelected("About");
+        setShowChevUp(true)
         break;
-      case latest >= 1001 && latest < 2000:
+      case latest >= 1001 && latest < 1704:
         setSelected("Projects");
+        setShowChevUp(true)
         break;
-      case latest >= 2001 && latest < 2800:
+      case latest >= 1705:
         setSelected("Experience");
+        setShowChevUp(true)
         break;
       default:
         setSelected([]);
+        setShowChevUp(false)
     }
   });
 
